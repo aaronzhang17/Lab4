@@ -51,13 +51,41 @@ function getCart($email) {
 
 function deleteItem($id) {
 
+    $.ajax({
+        url: Url+'Cart/'+$id,
+        type: 'delete',
+        dataType: 'json',
+        data: JSON.stringify({"product_id":$id, "email" : email}),
+        contentType: 'text/plain',
+
+        success: function (data) { //on success
+            alert("Deleted Product");
+        },
+        error: function (data) { //on error, throw an alert
+            alert("Error while fetching data.");
+        }
+    })
     //TODO complete implementation using the product id
-    alert("cart.js/deleteItem() is not implemented")
+    //alert("cart.js/deleteItem() is not implemented")
 }
 
 function checkOut() {
 
+    $.ajax({
+        url: Url+'Cart',
+        type: 'put',
+        dataType: 'json',
+        data: JSON.stringify({"email" : email}),
+        contentType: 'text/plain',
+
+        success: function (data) { //on success
+            alert("Checkout Successful");
+        },
+        error: function (data) { //on error, throw an alert
+            alert("Error while fetching data.");
+        }
+    })
     //TODO complete implementation
-    alert("cart.js/checkOut() is not implemented")
+    //alert("cart.js/checkOut() is not implemented")
 
 }
